@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +11,7 @@
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:Arial, sans-serif;
+    font-family:Arial,sans-serif;
 }
 
 body{
@@ -22,7 +23,6 @@ body{
     position:relative;
 
     background:#ffb6c1;
-
     background-image:
         radial-gradient(circle at 20% 20%, rgba(255,255,255,.35), transparent 30%),
         radial-gradient(circle at 80% 30%, rgba(255,255,255,.25), transparent 25%),
@@ -41,46 +41,50 @@ body{
 .heart{
     position:absolute;
     color:white;
-    opacity:0.7;
     animation:floatUp linear forwards;
 }
 
 @keyframes floatUp{
     from{
         transform:translateY(100vh) scale(0);
+        opacity:0;
     }
     to{
-        transform:translateY(-20vh) scale(1.4);
+        transform:translateY(-20vh) scale(1.5);
+        opacity:1;
     }
 }
 
 .card{
     position:relative;
     z-index:2;
-    background:rgba(255,255,255,0.95);
+    background:rgba(255,255,255,.95);
     backdrop-filter:blur(8px);
-    padding:40px 30px;
+    width:90%;
+    max-width:420px;
+    padding:35px;
     border-radius:25px;
     text-align:center;
-    width:90%;
-    max-width:380px;
-    box-shadow:0 10px 30px rgba(0,0,0,0.15);
+    box-shadow:0 10px 30px rgba(0,0,0,.15);
 }
 
 h1{
     color:#ff4b7d;
-    margin-bottom:15px;
+    margin-bottom:20px;
 }
 
-p{
+#story{
+    min-height:80px;
     color:#555;
-    margin-bottom:25px;
     font-size:18px;
+    line-height:1.6;
 }
 
 .buttons{
+    display:none;
     position:relative;
     height:120px;
+    margin-top:20px;
 }
 
 button{
@@ -89,7 +93,6 @@ button{
     border-radius:30px;
     cursor:pointer;
     font-size:16px;
-    transition:0.3s;
 }
 
 #yesBtn{
@@ -110,12 +113,16 @@ button{
 .success{
     display:none;
     margin-top:20px;
-    font-size:22px;
     color:#ff4b7d;
-    animation:pop 0.5s ease;
 }
 
-@keyframes pop{
+.rose{
+    font-size:80px;
+    margin-top:10px;
+    animation:bloom 1s ease;
+}
+
+@keyframes bloom{
     from{
         transform:scale(0);
     }
@@ -123,78 +130,176 @@ button{
         transform:scale(1);
     }
 }
+
+.letter{
+    display:none;
+    margin-top:20px;
+    padding:15px;
+    border-radius:15px;
+    background:#fff0f5;
+    color:#444;
+    line-height:1.7;
+}
 </style>
 </head>
-
 <body>
 
 <div class="hearts" id="hearts"></div>
 
 <div class="card">
-    <h1> abcd❤️</h1>
 
-    <p>efg? 🌹</p>
+<h1>Bismillah Assalamualaikum ❤️</h1>
 
-    <div class="buttons">
-        <button id="yesBtn">Yes 💖</button>
-        <button id="noBtn">No 😢</button>
-    </div>
+<div id="story"></div>
 
-    <div class="success" id="successMsg">
-        Yayyyy!! 🎉❤️<br><br>
-    </div>
+<div class="buttons" id="buttons">
+    <button id="yesBtn">Yes 💖</button>
+    <button id="noBtn">No 😢</button>
+</div>
+
+<div class="success" id="successMsg">
+    <h2>Yayyyy!! 🎉❤️</h2>
+    <div class="rose">🌹</div>
+</div>
+
+<div class="letter" id="letter">
+    Terima kasih sebab bagi peluang dekat saya ❤️
+
+    <br><br>
+
+    Saya tak janji yang saya sempurna,
+    tapi saya janji saya akan sentiasa cuba
+    buat awak tersenyum dan gembira 😊
+
+    <br><br>
+
+    Hari Isnin aku ambik kau okayy 😉
+</div>
+
 </div>
 
 <script>
+
 // Floating Hearts
 const heartsContainer = document.getElementById("hearts");
 
-function createHeart() {
+function createHeart(){
     const heart = document.createElement("div");
 
     heart.className = "heart";
     heart.innerHTML = "❤️";
 
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.fontSize = (Math.random() * 15 + 15) + "px";
-    heart.style.animationDuration = (Math.random() * 3 + 4) + "s";
+    heart.style.left = Math.random()*100 + "vw";
+    heart.style.fontSize = (Math.random()*15 + 15) + "px";
+    heart.style.animationDuration = (Math.random()*3 + 4) + "s";
 
     heartsContainer.appendChild(heart);
 
-    setTimeout(() => {
+    setTimeout(()=>{
         heart.remove();
-    }, 7000);
+    },7000);
 }
 
-// Lower frequency = better performance on iPhone
-setInterval(createHeart, 500);
+setInterval(createHeart,500);
 
-// Runaway No Button
+
+// Story Messages
+const messages = [
+    "Ada sesuatu yang saya nak beritahu awak...",
+    "Saya dah lama simpan perasaan ini ❤️",
+    "Setiap kali saya bercakap dengan awak...",
+    "Hari saya rasa lebih ceria 😊",
+    "Awak seorang yang sangat istimewa...",
+    "Dan saya harap dapat kenal awak dengan lebih dekat 🌹",
+    "Jadi..."
+];
+
+const story = document.getElementById("story");
+const buttons = document.getElementById("buttons");
+
+let msgIndex = 0;
+
+function showMessage(){
+
+    if(msgIndex < messages.length){
+
+        story.innerHTML = messages[msgIndex];
+        msgIndex++;
+
+        setTimeout(showMessage,2500);
+
+    }else{
+
+        story.innerHTML =
+        "<strong>Would you go on a date with me? 💖</strong>";
+
+        buttons.style.display = "block";
+    }
+}
+
+showMessage();
+
+
+// No Button
 const noBtn = document.getElementById("noBtn");
 
-noBtn.addEventListener("touchstart", moveButton);
-noBtn.addEventListener("mouseover", moveButton);
+let attempts = 0;
 
-function moveButton() {
-    const maxX = 220;
-    const maxY = 80;
+function moveButton(){
 
-    noBtn.style.left = Math.random() * maxX + "px";
-    noBtn.style.top = Math.random() * maxY + "px";
+    attempts++;
+
+    if(attempts === 3){
+        noBtn.innerHTML = "Are you sure? 😳";
+    }
+
+    if(attempts === 6){
+        noBtn.innerHTML = "Think again 🥺";
+    }
+
+    if(attempts === 10){
+        noBtn.innerHTML = "Just press Yes ❤️";
+    }
+
+    noBtn.style.left = Math.random()*220 + "px";
+    noBtn.style.top = Math.random()*70 + "px";
 }
+
+noBtn.addEventListener("mouseover",moveButton);
+noBtn.addEventListener("touchstart",moveButton);
+
 
 // Yes Button
 const yesBtn = document.getElementById("yesBtn");
-const successMsg = document.getElementById("successMsg");
 
-yesBtn.addEventListener("click", () => {
+yesBtn.addEventListener("click",()=>{
 
-    successMsg.style.display = "block";
+    document.getElementById("successMsg").style.display = "block";
+    document.getElementById("letter").style.display = "block";
 
-    document.body.style.backgroundImage =
-        "linear-gradient(135deg,#ff758c,#ff7eb3)";
+    for(let i=0;i<80;i++){
+
+        const emoji = document.createElement("div");
+
+        emoji.innerHTML =
+        ["🎉","❤️","✨","🌹"][Math.floor(Math.random()*4)];
+
+        emoji.style.position = "fixed";
+        emoji.style.left = Math.random()*100 + "vw";
+        emoji.style.top = Math.random()*100 + "vh";
+        emoji.style.fontSize = "30px";
+
+        document.body.appendChild(emoji);
+
+        setTimeout(()=>{
+            emoji.remove();
+        },3000);
+    }
+
 });
+
 </script>
 
 </body>
 </html>
+```
