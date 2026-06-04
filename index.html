@@ -1,115 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Date?</title>
 
 <style>
-    *{
-        margin:0;
-        padding:0;
-        box-sizing:border-box;
-        font-family: Arial, sans-serif;
-    }
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
 
-    body{
-        height:100vh;
-        overflow:hidden;
-        display:flex;
-        justify-content:center;
-        align-items:center;
-        background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-        position:relative;
-    }
+body{
+    min-height:100svh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+    position:relative;
 
-    .hearts{
-        position:absolute;
-        width:100%;
-        height:100%;
-        overflow:hidden;
-        z-index:0;
-    }
+    background:#ffb6c1;
 
-    .heart{
-        position:absolute;
-        color:white;
-        font-size:20px;
-        animation: float 6s linear infinite;
-        opacity:0.7;
-    }
+    background-image:
+        radial-gradient(circle at 20% 20%, rgba(255,255,255,.35), transparent 30%),
+        radial-gradient(circle at 80% 30%, rgba(255,255,255,.25), transparent 25%),
+        radial-gradient(circle at 50% 80%, rgba(255,255,255,.25), transparent 20%),
+        linear-gradient(135deg,#ff9a9e,#fad0c4,#ffd1dc);
+}
 
-    @keyframes float{
-        0%{
-            transform:translateY(100vh) scale(0);
-        }
-        100%{
-            transform:translateY(-10vh) scale(1.5);
-        }
-    }
+.hearts{
+    position:absolute;
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    z-index:0;
+}
 
-    .card{
-        position:relative;
-        z-index:2;
-        background:white;
-        padding:40px;
-        border-radius:20px;
-        text-align:center;
-        box-shadow:0 10px 30px rgba(0,0,0,0.2);
-        width:350px;
-    }
+.heart{
+    position:absolute;
+    color:white;
+    opacity:0.7;
+    animation:floatUp linear forwards;
+}
 
-    h1{
-        color:#ff4b7d;
-        margin-bottom:15px;
+@keyframes floatUp{
+    from{
+        transform:translateY(100vh) scale(0);
     }
+    to{
+        transform:translateY(-20vh) scale(1.4);
+    }
+}
 
-    p{
-        color:#555;
-        margin-bottom:25px;
-    }
+.card{
+    position:relative;
+    z-index:2;
+    background:rgba(255,255,255,0.95);
+    backdrop-filter:blur(8px);
+    padding:40px 30px;
+    border-radius:25px;
+    text-align:center;
+    width:90%;
+    max-width:380px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.15);
+}
 
-    .buttons{
-        position:relative;
-        height:120px;
-    }
+h1{
+    color:#ff4b7d;
+    margin-bottom:15px;
+}
 
-    button{
-        padding:12px 25px;
-        border:none;
-        border-radius:30px;
-        cursor:pointer;
-        font-size:16px;
-        transition:0.3s;
-    }
+p{
+    color:#555;
+    margin-bottom:25px;
+    font-size:18px;
+}
 
-    #yesBtn{
-        background:#ff4b7d;
-        color:white;
-        margin-right:10px;
-    }
+.buttons{
+    position:relative;
+    height:120px;
+}
 
-    #yesBtn:hover{
-        transform:scale(1.1);
-    }
+button{
+    padding:12px 25px;
+    border:none;
+    border-radius:30px;
+    cursor:pointer;
+    font-size:16px;
+    transition:0.3s;
+}
 
-    #noBtn{
-        background:#ddd;
-        position:absolute;
-    }
+#yesBtn{
+    background:#ff4b7d;
+    color:white;
+}
 
-    .success{
-        display:none;
-        margin-top:20px;
-        font-size:22px;
-        color:#ff4b7d;
-        animation: pop 0.5s ease;
-    }
+#yesBtn:hover{
+    transform:scale(1.1);
+}
 
-    @keyframes pop{
-        0%{transform:scale(0);}
-        100%{transform:scale(1);}
+#noBtn{
+    background:#e5e5e5;
+    position:absolute;
+    left:140px;
+}
+
+.success{
+    display:none;
+    margin-top:20px;
+    font-size:22px;
+    color:#ff4b7d;
+    animation:pop 0.5s ease;
+}
+
+@keyframes pop{
+    from{
+        transform:scale(0);
     }
+    to{
+        transform:scale(1);
+    }
+}
 </style>
 </head>
 
@@ -118,8 +131,9 @@
 <div class="hearts" id="hearts"></div>
 
 <div class="card">
-    <h1>Bismillah Assalamualaikum❤️</h1>
-    <p>Would you go on a date with me?</p>
+    <h1>Bismillah Assalamualaikum ❤️</h1>
+
+    <p>Would you go on a date with me? 🌹</p>
 
     <div class="buttons">
         <button id="yesBtn">Yes 💖</button>
@@ -127,53 +141,60 @@
     </div>
 
     <div class="success" id="successMsg">
-        Yayyyy!! 🎉❤️<br>
+        Yayyyy!! 🎉❤️<br><br>
+        Hari Isnin aku ambik kau okayy 😉
     </div>
 </div>
 
 <script>
-    // Floating hearts
-    const heartsContainer = document.getElementById("hearts");
+// Floating Hearts
+const heartsContainer = document.getElementById("hearts");
 
-    function createHeart(){
-        const heart = document.createElement("div");
-        heart.classList.add("heart");
-        heart.innerHTML = "❤️";
+function createHeart() {
+    const heart = document.createElement("div");
 
-        heart.style.left = Math.random() * 100 + "vw";
-        heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
-        heart.style.fontSize = (Math.random() * 20 + 10) + "px";
+    heart.className = "heart";
+    heart.innerHTML = "❤️";
 
-        heartsContainer.appendChild(heart);
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (Math.random() * 15 + 15) + "px";
+    heart.style.animationDuration = (Math.random() * 3 + 4) + "s";
 
-        setTimeout(() => {
-            heart.remove();
-        }, 6000);
-    }
+    heartsContainer.appendChild(heart);
 
-    setInterval(createHeart, 300);
+    setTimeout(() => {
+        heart.remove();
+    }, 7000);
+}
 
-    // No button runs away
-    const noBtn = document.getElementById("noBtn");
+// Lower frequency = better performance on iPhone
+setInterval(createHeart, 500);
 
-    noBtn.addEventListener("mouseover", () => {
-        const x = Math.random() * 250;
-        const y = Math.random() * 80;
+// Runaway No Button
+const noBtn = document.getElementById("noBtn");
 
-        noBtn.style.left = `${x}px`;
-        noBtn.style.top = `${y}px`;
-    });
+noBtn.addEventListener("touchstart", moveButton);
+noBtn.addEventListener("mouseover", moveButton);
 
-    // Yes button
-    const yesBtn = document.getElementById("yesBtn");
-    const successMsg = document.getElementById("successMsg");
+function moveButton() {
+    const maxX = 220;
+    const maxY = 80;
 
-    yesBtn.addEventListener("click", () => {
-        successMsg.style.display = "block";
+    noBtn.style.left = Math.random() * maxX + "px";
+    noBtn.style.top = Math.random() * maxY + "px";
+}
 
-        document.body.style.background =
-            "linear-gradient(135deg, #ff758c, #ff7eb3)";
-    });
+// Yes Button
+const yesBtn = document.getElementById("yesBtn");
+const successMsg = document.getElementById("successMsg");
+
+yesBtn.addEventListener("click", () => {
+
+    successMsg.style.display = "block";
+
+    document.body.style.backgroundImage =
+        "linear-gradient(135deg,#ff758c,#ff7eb3)";
+});
 </script>
 
 </body>
