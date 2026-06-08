@@ -98,21 +98,6 @@ button{
     color:#ff4b7d;
 }
 
-.rose{
-    font-size:80px;
-    margin-top:10px;
-    animation:bloom 1s ease;
-}
-
-@keyframes bloom{
-    from{
-        transform:scale(0);
-    }
-    to{
-        transform:scale(1);
-    }
-}
-
 .letter{
     display:none;
     margin-top:20px;
@@ -122,312 +107,11 @@ button{
     color:#444;
     line-height:1.7;
 }
-
-/* Crystal Heart Popup */
-.big-heart{
-    position:fixed;
-    top:50%;
-    left:50%;
-    transform:translate(-50%,-50%) scale(0);
-    font-size:250px;
-    z-index:9999;
-    pointer-events:none;
-
-    background:linear-gradient(
-        135deg,
-        #fff,
-        #ffd6e7,
-        #ff8fc2,
-        #ff4b7d,
-        #ff8fc2,
-        #ffffff
-    );
-
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
-
-    filter:
-        drop-shadow(0 0 15px rgba(255,255,255,0.8))
-        drop-shadow(0 0 30px rgba(255,105,180,0.8))
-        drop-shadow(0 0 50px rgba(255,20,147,0.7));
-
-    animation:crystalHeart 2.5s ease forwards;
-}
-
-@keyframes crystalHeart{
-    0%{
-        transform:translate(-50%,-50%) scale(0);
-        opacity:0;
-    }
-
-    20%{
-        transform:translate(-50%,-50%) scale(1.4);
-        opacity:1;
-    }
-
-    50%{
-        transform:translate(-50%,-50%) scale(1.1);
-    }
-
-    80%{
-        transform:translate(-50%,-50%) scale(1.3);
-    }
-
-    100%{
-        transform:translate(-50%,-50%) scale(1);
-        opacity:0;
-    }
-}
-
-/* Sparkles */
-.sparkle{
-    position:fixed;
-    font-size:30px;
-    pointer-events:none;
-    z-index:9998;
-    animation:sparkleFloat 2s ease forwards;
-}
-
-@keyframes sparkleFloat{
-    from{
-        transform:translateY(0) scale(0);
-        opacity:1;
-    }
-
-    to{
-        transform:translateY(-150px) scale(1.5);
-        opacity:0;
-    }
-}
-
-/* Heart Scene */
-.heart-scene{
-    position:fixed;
-    top:50%;
-    left:50%;
-    transform:translate(-50%,-50%);
-    width:400px;
-    height:400px;
-    pointer-events:none;
-    z-index:9999;
-    perspective: 1200px;
-}
-
-.crystal-heart{
-    position:absolute;
-    top:50%;
-    left:50%;
-    transform-style: preserve-3d;
-
-    font-size:220px;
-
-    /* MULTI-FACET DIAMOND GRADIENT */
-    background: linear-gradient(
-        45deg,
-        #ffffff 0%,
-        #ffd1e8 15%,
-        #ff4b9a 30%,
-        #ffffff 45%,
-        #ff7abf 60%,
-        #ffffff 75%,
-        #ff2e93 100%
-    );
-
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
-
-    /* CRYSTAL EDGE SHARPNESS */
-    filter:
-        drop-shadow(0 0 8px rgba(255,255,255,0.9))
-        drop-shadow(0 0 25px rgba(255,105,180,0.9))
-        drop-shadow(0 0 55px rgba(255,20,147,0.7));
-
-    /* REALISTIC 3D ROTATION */
-    animation:
-        diamondRotate 5s linear infinite,
-        diamondPulse 2.5s ease-in-out infinite;
-}
-
-@keyframes diamondRotate{
-    0%{
-        transform: translate(-50%,-50%) rotateX(20deg) rotateY(0deg);
-    }
-    25%{
-        transform: translate(-50%,-50%) rotateX(-20deg) rotateY(90deg);
-    }
-    50%{
-        transform: translate(-50%,-50%) rotateX(20deg) rotateY(180deg);
-    }
-    75%{
-        transform: translate(-50%,-50%) rotateX(-20deg) rotateY(270deg);
-    }
-    100%{
-        transform: translate(-50%,-50%) rotateX(20deg) rotateY(360deg);
-    }
-}
-
-@keyframes diamondPulse{
-    0%,100%{
-        transform: translate(-50%,-50%) scale(1);
-        filter:
-            drop-shadow(0 0 10px rgba(255,255,255,0.9))
-            drop-shadow(0 0 30px rgba(255,105,180,0.8));
-    }
-
-    50%{
-        transform: translate(-50%,-50%) scale(1.12);
-        filter:
-            drop-shadow(0 0 25px rgba(255,255,255,1))
-            drop-shadow(0 0 70px rgba(255,105,180,1));
-    }
-}
-
-/* 3D rotation (X + Y makes it feel like crystal) */
-@keyframes crystal3DRotate{
-    0%{
-        transform:translate(-50%,-50%) rotateY(0deg) rotateX(10deg);
-    }
-    50%{
-        transform:translate(-50%,-50%) rotateY(180deg) rotateX(-10deg);
-    }
-    100%{
-        transform:translate(-50%,-50%) rotateY(360deg) rotateX(10deg);
-    }
-}
-
-/* breathing glow */
-@keyframes crystalPulse{
-    0%,100%{
-        filter:
-            drop-shadow(0 0 10px rgba(255,255,255,0.9))
-            drop-shadow(0 0 25px rgba(255,105,180,0.9))
-            drop-shadow(0 0 60px rgba(255,20,147,0.7));
-        transform:translate(-50%,-50%) scale(1);
-    }
-
-    50%{
-        filter:
-            drop-shadow(0 0 20px rgba(255,255,255,1))
-            drop-shadow(0 0 45px rgba(255,105,180,1))
-            drop-shadow(0 0 90px rgba(255,20,147,1));
-        transform:translate(-50%,-50%) scale(1.15);
-    }
-}
-
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
-
-    filter:
-        drop-shadow(0 0 15px rgba(255,255,255,.9))
-        drop-shadow(0 0 40px rgba(255,105,180,.8))
-        drop-shadow(0 0 70px rgba(255,20,147,.7));
-
-    animation:
-        crystalSpin 4s linear infinite,
-        crystalPulse 2s ease-in-out infinite;
-}
-
-/* Orbit Ring */
-.orbit{
-    position:absolute;
-    width:100%;
-    height:100%;
-    animation:orbitRotate 6s linear infinite;
-    transform-style:preserve-3d;
-}
-
-.orbit-heart{
-    position:absolute;
-    top:50%;
-    left:50%;
-    font-size:38px;
-    transform-origin:center;
-    filter:
-        drop-shadow(0 0 10px hotpink)
-        drop-shadow(0 0 20px rgba(255,105,180,0.8));
-    animation:orbitFloat 2s ease-in-out infinite;
-}
-
-/* little bounce for life effect */
-@keyframes orbitFloat{
-    0%,100%{
-        transform:scale(1);
-    }
-    50%{
-        transform:scale(1.3);
-    }
-}
-
-/* Main Heart Rotation */
-@keyframes crystalSpin{
-    from{
-        transform:translate(-50%,-50%) rotateY(0deg);
-    }
-    to{
-        transform:translate(-50%,-50%) rotateY(360deg);
-    }
-}
-
-@keyframes crystalPulse{
-    0%,100%{
-        transform:translate(-50%,-50%) scale(1);
-    }
-    50%{
-        transform:translate(-50%,-50%) scale(1.15);
-    }
-}
-
-/* Orbit Rotation */
-@keyframes orbitRotate{
-    from{
-        transform:rotate(0deg);
-    }
-    to{
-        transform:rotate(360deg);
-    }
-}
-
-/* Fade Out */
-.fade-heart-scene{
-    animation:fadeHeartScene 3s forwards;
-}
-
-@keyframes fadeHeartScene{
-    0%{
-        opacity:1;
-    }
-    100%{
-        opacity:0;
-    }
-}
-
-@keyframes crystal3D{
-    0%{
-        transform: translate(-50%,-50%) rotateY(0deg) rotateX(15deg) scale(1);
-    }
-
-    25%{
-        transform: translate(-50%,-50%) rotateY(90deg) rotateX(-10deg) scale(1.1);
-    }
-
-    50%{
-        transform: translate(-50%,-50%) rotateY(180deg) rotateX(15deg) scale(1);
-    }
-
-    75%{
-        transform: translate(-50%,-50%) rotateY(270deg) rotateX(-10deg) scale(1.1);
-    }
-
-    100%{
-        transform: translate(-50%,-50%) rotateY(360deg) rotateX(15deg) scale(1);
-    }
-}
+      
 </style>
 </head>
 <body>
-
-<div class="hearts" id="hearts"></div>
-
+ 
 <div class="card">
 
 <h1>MSR</h1>
@@ -438,12 +122,7 @@ button{
     <button id="yesBtn">Yes 😮‍💨</button>
     <button id="noBtn">No 😢</button>
 </div>
-
-<div class="success" id="successMsg">
-    <h2>😮‍💨</h2>
-    <div class="rose">🌹</div>
-</div>
-
+ 
 <div class="letter" id="letter">
     "My answer is not right now sbb tak rasa nk date lgi"
     <br><br>
@@ -452,70 +131,55 @@ button{
     the conversation in the shower every night. 
     <br><br>
     Typical men behavior, Nothing new 😮‍💨
-</div>
-
+</div> 
 </div>
 
 <script>
+ 
 
-// Floating Hearts
-const heartsContainer = document.getElementById("hearts");
+function createEmoji(){
 
-function createHeart() {
+    const emoji = document.createElement("div");
 
-    const heart = document.createElement("div");
-
-    const emojis = ["🙄","😑","😮‍💨","🤦‍♀️","💢","😒"];
-    const colors = [
-        "#ff4b7d",
-        "#ff66b2",
-        "#ff1493",
-        "#ff69b4",
-        "#ff85c1",
-        "#ffffff"
+    const emojis = [
+        "🙄",
+        "😑",
+        "😮‍💨",
+        "🤦‍♀️",
+        "💢",
+        "😒",
+        "🚩",
+        "🫠",
+        "🤡"
     ];
 
-    const phi = Math.random() * Math.PI * 2;
-    const scale = Math.random() * 0.35 + 0.8;
-    const speed = Math.random() * 3 + 4;
+    emoji.innerHTML =
+        emojis[Math.floor(Math.random()*emojis.length)];
 
-    const colorIndex = Math.floor(Math.random() * colors.length);
+    emoji.style.position = "fixed";
+    emoji.style.left = Math.random()*100 + "vw";
+    emoji.style.top = "100vh";
 
-    heart.innerHTML =
-        emojis[Math.floor(Math.random() * emojis.length)];
+    emoji.style.fontSize =
+        (Math.random()*20 + 20) + "px";
 
-    heart.className = "heart";
+    emoji.style.transition =
+        `all ${Math.random()*3+4}s linear`;
 
-    heart.style.position = "fixed";
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.top = "100vh";
+    document.body.appendChild(emoji);
 
-    heart.style.color = colors[colorIndex];
-    heart.style.fontSize = (Math.random() * 20 + 20) + "px";
-
-    heart.style.transform =
-        `scale(${scale}) rotate(${phi}rad)`;
-
-    heart.style.transition = `all ${speed}s linear`;
-
-    heartsContainer.appendChild(heart);
-
-    requestAnimationFrame(() => {
-        heart.style.top = "-50px";
-        heart.style.left =
-            (parseFloat(heart.style.left) + (Math.random()*20-10))
-            + "vw";
-        heart.style.opacity = "0";
+    requestAnimationFrame(()=>{
+        emoji.style.top = "-50px";
+        emoji.style.opacity = "0";
     });
 
-    setTimeout(() => {
-        heart.remove();
-    }, speed * 1000);
+    setTimeout(()=>{
+        emoji.remove();
+    },7000);
 }
 
-setInterval(createHeart,500);
-
-
+setInterval(createEmoji,500); 
+ 
 // Story Messages
 const messages = [                       
     "There was a girl who always kept her", 
@@ -601,70 +265,22 @@ const yesBtn = document.getElementById("yesBtn");
 
 yesBtn.addEventListener("click",()=>{
 
-    document.getElementById("successMsg").style.display="block";
     document.getElementById("letter").style.display="block";
 
-    /* Crystal Heart Universe */
-    const scene = document.createElement("div");
-    scene.className = "heart-scene";
-
-    scene.innerHTML = `
-    <div class="galaxy">
-        <div class="crystal-heart">💖</div>
-
-        ${[...Array(25)].map((_, i) => `
-            <div class="star" style="
-                --angle:${i * (360/25)}deg;
-                --distance:${120 + Math.random()*120}px;
-                --speed:${3 + Math.random()*4}s;
-            ">✨</div>
-        `).join('')}
-    </div>
-`;
-
-    document.body.appendChild(scene);
-
-    /* Remove after 8 seconds */
-    setTimeout(()=>{
-        scene.classList.add("fade-heart-scene");
-
-        setTimeout(()=>{
-            scene.remove();
-        },3000);
-
-    },5000);
-
-    /* Sparkles around heart */
-    for(let i=0;i<60;i++){
-
-        const sparkle=document.createElement("div");
-
-        sparkle.className="sparkle";
-        sparkle.innerHTML=["✨","💎","💕","🌸"][Math.floor(Math.random()*4)];
-
-        const angle=Math.random()*Math.PI*2;
-        const radius=Math.random()*180;
-
-        sparkle.style.left=
-            (window.innerWidth/2 + Math.cos(angle)*radius)+"px";
-
-        sparkle.style.top=
-            (window.innerHeight/2 + Math.sin(angle)*radius)+"px";
-
-        document.body.appendChild(sparkle);
-
-        setTimeout(()=>{
-            sparkle.remove();
-        },2000);
-    }
-
-    /* Existing celebration */
-    for(let i=0;i<100;i++){
+    for(let i=0;i<150;i++){
 
         const emoji=document.createElement("div");
 
-        emoji.innerHTML=
-        ["🙄","😑","😮‍💨","🤦‍♀️","💢"][Math.floor(Math.random()*5)];
+        emoji.innerHTML=[
+            "🙄",
+            "😑",
+            "😮‍💨",
+            "🤦‍♀️",
+            "💢",
+            "😒",
+            "🚩",
+            "🤡"
+        ][Math.floor(Math.random()*8)];
 
         emoji.style.position="fixed";
         emoji.style.left=Math.random()*100+"vw";
