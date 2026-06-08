@@ -37,13 +37,13 @@ body::after{
 }
 
 body::before{
-    background:#ff4b7d;
+    background:#ff9800;
     top:-100px;
     left:-100px;
 }
 
 body::after{
-    background:#7c3aed;
+     background:#f44336;
     bottom:-100px;
     right:-100px;
 }
@@ -430,30 +430,28 @@ button{
 
 <div class="card">
 
-<h1>Bismillah Assalamualaikum ❤️</h1>
+<h1>MSR</h1>
 
 <div id="story"></div>
 
 <div class="buttons" id="buttons">
-    <button id="yesBtn">Yes 💖</button>
+    <button id="yesBtn">Yes 😮‍💨</button>
     <button id="noBtn">No 😢</button>
 </div>
 
 <div class="success" id="successMsg">
-    <h2>Yayyyy!! 🎉❤️</h2>
+    <h2>😮‍💨</h2>
     <div class="rose">🌹</div>
 </div>
 
 <div class="letter" id="letter">
     "My answer is not right now sbb tak rasa nk date lgi"
     <br><br>
-    Okay, I understand apa yang U rasa right now. Terima kasih sebab jujur dengan I, I really appreciate your honesty.
-    I won’t force anything sebab I know feelings can’t be pushed or rushed. Kalau U tak rasa nak date right now, I respect that fully.
-    I just hope you take care of yourself and do what feels right for you. 
-    Kalau one day you feel like talking again or your feelings change, you know I’m not completely closing the door.
-    For now, I’ll give you space. Jaga diri baik-baik, and I genuinely wish you happiness, even if it’s not with me.
+    Avoidant and tak move on are two different things lah. 
+    One avoids the conversation, the other still rehearses 
+    the conversation in the shower every night. 
     <br><br>
-    Pape roro 😉
+    Typical men behavior, Nothing new 😮‍💨
 </div>
 
 </div>
@@ -467,7 +465,7 @@ function createHeart() {
 
     const heart = document.createElement("div");
 
-    const emojis = ["❤️","💖","💘","💕","🌹","✨"];
+    const emojis = ["🙄","😑","😮‍💨","🤦‍♀️","💢","😒"];
     const colors = [
         "#ff4b7d",
         "#ff66b2",
@@ -519,14 +517,28 @@ setInterval(createHeart,500);
 
 
 // Story Messages
-const messages = [
-    "Ada sesuatu yang I nak beritahu U...",
-    "I dah lama simpan perasaan ini ❤️",
-    "Setiap kali I bercakap dengan U...",
-    "Hari I rasa lebih ceria 😊",
-    "U seorang yang sangat istimewa...",
-    "Dan I harap dapat kenal U dengan lebih dekat 🌹",
-    "Jadi..."
+const messages = [                       
+    "There was a girl who always kept her", 
+    "door closed. Not because she hated people", 
+    "but because she was careful with her heart.", 
+    "She didn’t open it easily, because every time", 
+    "she did, she believed it meant something.",
+    "Then one day, someone came and started knocking",
+    "often. Not loud, not demanding—just enough to make", 
+    "her wonder if it was safe to open a little. He stayed", 
+    "around. He talked every day. Slowly, she opened the door", 
+    "just a bit. For the first time in a long while,",
+    "she thought maybe it was okay to let someone in.",
+    "But while standing at her door, he would talk about other",
+    "doors he had been to. Sometimes he disappeared without warning,", 
+    "sometimes he came back like he never left. And each time,", 
+    "she would quietly wait by her door, hoping it meant something", 
+    "more than confusion. She didn’t say much. She just kept hoping.",
+    "Until one day, she realised she was the only one treating the", 
+    "door like it was something sacred. To him, it was just another ",
+    "place to pass by.She wasn’t angry when she finally closed it again.", 
+    "She just felt empty. Because she didn’t open her door often… and ",
+    "when she finally did, it still wasn’t enough to be chosen.",
 ];
 
 const story = document.getElementById("story");
@@ -546,7 +558,7 @@ function showMessage(){
     }else{
 
         story.innerHTML =
-        "<strong>Would you go on a date with me? 💖</strong>";
+        "<strong>Would you go on a date with me? nope</strong>";
 
         buttons.style.display = "block";
     }
@@ -652,7 +664,7 @@ yesBtn.addEventListener("click",()=>{
         const emoji=document.createElement("div");
 
         emoji.innerHTML=
-        ["🎉","❤️","✨","🌹","💖"][Math.floor(Math.random()*5)];
+        ["🙄","😑","😮‍💨","🤦‍♀️","💢"][Math.floor(Math.random()*5)];
 
         emoji.style.position="fixed";
         emoji.style.left=Math.random()*100+"vw";
@@ -670,5 +682,4 @@ yesBtn.addEventListener("click",()=>{
 
 </script>
 
-</body>
-</html>
+</body> 
