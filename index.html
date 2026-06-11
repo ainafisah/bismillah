@@ -1,11 +1,12 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Date?</title>
+<title>MSR Investigation Report</title>
 
 <style>
+
 *{
     margin:0;
     padding:0;
@@ -14,8 +15,7 @@
 }
 
 body{
-    min-height:100svh;
-    margin:0;
+    min-height:100vh;
     display:flex;
     justify-content:center;
     align-items:center;
@@ -24,7 +24,6 @@ body{
     background:#111827;
 }
 
-/* Background blobs */
 body::before,
 body::after{
     content:"";
@@ -43,43 +42,89 @@ body::before{
 }
 
 body::after{
-     background:#f44336;
+    background:#f44336;
     bottom:-100px;
     right:-100px;
 }
 
-/* Card */
 .card{
     position:relative;
     z-index:10;
     width:90%;
-    max-width:420px;
+    max-width:450px;
 
-    background:rgba(255,255,255,0.1);
+    background:rgba(0,0,0,0.65);
     backdrop-filter:blur(20px);
-    -webkit-backdrop-filter:blur(20px);
 
-    border:1px solid rgba(255,255,255,0.2);
+    border:2px dashed #ff9800;
     border-radius:25px;
 
     padding:35px;
     text-align:center;
 
-    box-shadow:0 8px 32px rgba(0,0,0,0.3);
+    box-shadow:0 8px 32px rgba(0,0,0,.4);
+
+    transform:rotate(-1deg);
 }
 
 h1{
     color:white;
+    margin-bottom:15px;
+}
+
+h1::before{
+    content:"⚠️ CONFIDENTIAL CASE FILE ⚠️";
+    display:block;
+    font-size:12px;
+    color:#ff9800;
+    margin-bottom:10px;
+}
+
+.meter{
+    width:100%;
+    height:12px;
+    background:#333;
+    border-radius:20px;
+    overflow:hidden;
+    margin-bottom:15px;
+}
+
+#meterFill{
+    width:0%;
+    height:100%;
+    background:linear-gradient(
+        90deg,
+        #4caf50,
+        #ff9800,
+        #f44336
+    );
+    transition:1s;
+}
+
+.meterLabel{
+    color:white;
+    margin-bottom:12px;
+    font-size:14px;
 }
 
 #story{
     color:#e5e7eb;
+    line-height:1.8;
+    min-height:120px;
+}
+
+.buttons{
+    display:none;
+    margin-top:20px;
 }
 
 button{
     border:none;
     border-radius:30px;
     padding:12px 24px;
+    margin:8px;
+    cursor:pointer;
+    transition:.3s;
 }
 
 #yesBtn{
@@ -90,12 +135,7 @@ button{
 #noBtn{
     background:white;
     color:#111827;
-}
-    
-.success{
-    display:none;
-    margin-top:20px;
-    color:#ff4b7d;
+    position:relative;
 }
 
 .letter{
@@ -107,14 +147,62 @@ button{
     color:#444;
     line-height:1.7;
 }
-      
+
+.achievement{
+    position:fixed;
+    top:20px;
+    right:20px;
+    background:gold;
+    color:black;
+    padding:12px 18px;
+    border-radius:10px;
+    font-weight:bold;
+    z-index:9999;
+    animation:slideIn .4s ease;
+}
+
+@keyframes slideIn{
+    from{
+        transform:translateX(100%);
+    }
+    to{
+        transform:translateX(0);
+    }
+}
+
+.stamp{
+    position:absolute;
+    top:15px;
+    right:10px;
+
+    color:red;
+    border:4px solid red;
+
+    font-size:26px;
+    font-weight:bold;
+
+    padding:8px;
+
+    transform:rotate(18deg);
+
+    opacity:.8;
+}
+
 </style>
 </head>
 <body>
- 
+
 <div class="card">
 
 <h1>MSR</h1>
+
+<p class="meterLabel">
+🚨 Emotional Damage Detection
+</p>
+
+<div class="meter">
+    <div id="meterFill"></div>
+</div>
 
 <div id="story"></div>
 
@@ -122,55 +210,53 @@ button{
     <button id="yesBtn">Yes 😮‍💨</button>
     <button id="noBtn">No 😢</button>
 </div>
- 
+
 <div class="letter" id="letter">
-    "My answer is not right now sbb tak rasa nk date lgi"
-    <br><br>
-    Avoidant and tak move on are two different things lah. 
-    One avoids the conversation, the other still rehearses 
-    the conversation in the shower every night. 
-    <br><br>
-    Typical men behavior, Nothing new 😮‍💨
-</div> 
+
+"My answer is not right now sbb tak rasa nk date lgi"
+
+<br><br>
+
+Avoidant and tak move on are two different things lah.
+One avoids the conversation, the other still rehearses
+the conversation in the shower every night.
+
+<br><br>
+
+Typical men behavior, Nothing new 😮‍💨
+
+</div>
+
 </div>
 
 <script>
- 
 
 function createEmoji(){
 
-    const emoji = document.createElement("div");
-
-    const emojis = [
-        "🙄",
-        "😑",
-        "😮‍💨",
-        "🤦‍♀️",
-        "💢",
-        "😒",
-        "🚩",
-        "🫠",
-        "🤡"
+    const emojis=[
+        "🙄","😑","😮‍💨","🤦‍♀️",
+        "💢","😒","🚩","🫠","🤡"
     ];
 
-    emoji.innerHTML =
+    const emoji=document.createElement("div");
+
+    emoji.innerHTML=
         emojis[Math.floor(Math.random()*emojis.length)];
 
-    emoji.style.position = "fixed";
-    emoji.style.left = Math.random()*100 + "vw";
-    emoji.style.top = "100vh";
+    emoji.style.position="fixed";
+    emoji.style.left=Math.random()*100+"vw";
+    emoji.style.top="100vh";
+    emoji.style.fontSize=
+        (Math.random()*20+20)+"px";
 
-    emoji.style.fontSize =
-        (Math.random()*20 + 20) + "px";
-
-    emoji.style.transition =
+    emoji.style.transition=
         `all ${Math.random()*3+4}s linear`;
 
     document.body.appendChild(emoji);
 
     requestAnimationFrame(()=>{
-        emoji.style.top = "-50px";
-        emoji.style.opacity = "0";
+        emoji.style.top="-50px";
+        emoji.style.opacity="0";
     });
 
     setTimeout(()=>{
@@ -178,114 +264,202 @@ function createEmoji(){
     },7000);
 }
 
-setInterval(createEmoji,500); 
- 
-// Story Messages
-const messages = [                       
-    "There was a girl who always kept her", 
-    "door closed. Not because she hated people", 
-    "but because she was careful with her heart.", 
-    "She didn’t open it easily, because every time", 
-    "she did, she believed it meant something.",
-    "Then one day, someone came and started knocking",
-    "often. Not loud, not demanding, just enough to make", 
-    "her wonder if it was safe to open a little. He stayed", 
-    "around. He talked every day. Slowly, she opened the door", 
-    "just a bit. For the first time in a long while,",
-    "she thought maybe it was okay to let someone in.",
-    "But while standing at her door, he would talk about other",
-    "doors he had been to. Sometimes he disappeared without warning,", 
-    "sometimes he came back like he never left. And each time,", 
-    "she would quietly wait by her door, hoping it meant something", 
-    "more than confusion. She didn’t say much. She just kept hoping.",
-    "Until one day, she realised she was the only one treating the", 
-    "door like it was something sacred. To him, it was just another ",
-    "place to pass by.She wasn’t angry when she finally closed it again.", 
-    "She just felt empty. Because she didn’t open her door often… and ",
-    "when she finally did, it still wasn’t enough to be chosen.",
+setInterval(createEmoji,500);
+
+function achievement(text){
+
+    const popup=document.createElement("div");
+
+    popup.className="achievement";
+    popup.innerHTML="🏆 "+text;
+
+    document.body.appendChild(popup);
+
+    setTimeout(()=>{
+        popup.remove();
+    },3000);
+}
+
+const messages=[
+
+"There was a girl who always kept her",
+"door closed. Not because she hated people",
+"but because she was careful with her heart.",
+"She didn’t open it easily, because every time",
+"she did, she believed it meant something.",
+"Then one day, someone came and started knocking",
+"often. Not loud, not demanding, just enough to make",
+"her wonder if it was safe to open a little. He stayed",
+"around. He talked every day. Slowly, she opened the door",
+"just a bit. For the first time in a long while,",
+"she thought maybe it was okay to let someone in.",
+"But while standing at her door, he would talk about other",
+"doors he had been to. Sometimes he disappeared without warning,",
+"sometimes he came back like he never left. And each time,",
+"she would quietly wait by her door, hoping it meant something",
+"more than confusion. She didn’t say much. She just kept hoping.",
+"Until one day, she realised she was the only one treating the",
+"door like it was something sacred. To him, it was just another",
+"place to pass by.She wasn’t angry when she finally closed it again.",
+"She just felt empty. Because she didn’t open her door often… and",
+"when she finally did, it still wasn’t enough to be chosen."
+
 ];
 
-const story = document.getElementById("story");
-const buttons = document.getElementById("buttons");
+const story=document.getElementById("story");
+const buttons=document.getElementById("buttons");
+const meter=document.getElementById("meterFill");
 
-let msgIndex = 0;
+let msgIndex=0;
 
 function showMessage(){
 
     if(msgIndex < messages.length){
 
-        story.innerHTML = messages[msgIndex];
+        meter.style.width=
+            ((msgIndex+1)/messages.length)*100+"%";
+
+        story.innerHTML=
+        `<b>Investigation Log #${msgIndex+1}</b><br><br>
+        ${messages[msgIndex]}`;
+
+        if(msgIndex===5)
+            achievement("Mixed Signals Detected");
+
+        if(msgIndex===10)
+            achievement("Emotional Damage Unlocked");
+
+        if(msgIndex===17)
+            achievement("Rare Item Found: Self Respect");
+
         msgIndex++;
 
         setTimeout(showMessage,2500);
 
     }else{
 
-        story.innerHTML =
-        "<strong>Would you go on a date with me? nope</strong>";
+        story.innerHTML=
+        "🔍 Analyzing Male Behaviour...";
 
-        buttons.style.display = "block";
+        setTimeout(()=>{
+
+            story.innerHTML=
+            `
+            ✅ Analysis Complete
+            <br><br>
+
+            Probability of Mixed Signals:
+            97.8%
+
+            <br><br>
+
+            Probability of Emotional Confusion:
+            99.9%
+
+            <br><br>
+
+            Probability of Being Annoying:
+            100%
+            `;
+
+            setTimeout(()=>{
+
+                story.innerHTML=
+                "<strong>Would you go on a date with me? nope</strong>";
+
+                buttons.style.display="block";
+
+            },2500);
+
+        },2500);
     }
 }
 
 showMessage();
 
+const noBtn=document.getElementById("noBtn");
 
-// No Button
-const noBtn = document.getElementById("noBtn");
+let attempts=0;
 
-let attempts = 0;
+const noTexts=[
+
+"Still No 😑",
+"Absolutely No 🙄",
+"Bro Stop 🤦‍♀️",
+"You're Embarrassing Yourself 😭",
+"Call Your Friends 😭",
+"Touch Grass 🌱",
+"Seek Help 🚑",
+"Delete This Website 🚨",
+"JUST PRESS YES ALREADY 💀"
+
+];
 
 function moveButton(){
 
+    if(attempts < noTexts.length){
+
+        noBtn.innerHTML=noTexts[attempts];
+    }
+
     attempts++;
 
-    if(attempts === 3){
-        noBtn.innerHTML = "Are you sure? 😳";
-    }
+    noBtn.style.left=
+        Math.random()*220+"px";
 
-    if(attempts === 6){
-        noBtn.innerHTML = "Think again 🥺";
-    }
-
-    if(attempts === 10){
-        noBtn.innerHTML = "Just press Yes ❤️";
-    }
-
-    noBtn.style.left = Math.random()*220 + "px";
-    noBtn.style.top = Math.random()*70 + "px";
+    noBtn.style.top=
+        Math.random()*80+"px";
 }
 
 noBtn.addEventListener("mouseover",moveButton);
 noBtn.addEventListener("touchstart",moveButton);
 
+document.getElementById("yesBtn")
+.addEventListener("click",()=>{
 
-// Yes Button
-const yesBtn = document.getElementById("yesBtn");
+    story.innerHTML=
+    `
+    ⚠️ ERROR 404
 
-yesBtn.addEventListener("click",()=>{
+    <br><br>
 
-    document.getElementById("letter").style.display="block";
+    Date Request Not Found
+
+    <br><br>
+
+    Reason:
+
+    <br><br>
+
+    "My answer is not right now sbb tak rasa nk date lgi"
+    `;
+
+    document.getElementById("letter")
+    .style.display="block";
+
+    const stamp=document.createElement("div");
+
+    stamp.className="stamp";
+    stamp.innerHTML="CASE CLOSED";
+
+    document.querySelector(".card")
+    .appendChild(stamp);
+
+    achievement("Legendary Badge: Avoidant Detector");
 
     for(let i=0;i<150;i++){
 
         const emoji=document.createElement("div");
 
-        emoji.innerHTML=[
-            "🙄",
-            "😑",
-            "😮‍💨",
-            "🤦‍♀️",
-            "💢",
-            "😒",
-            "🚩",
-            "🤡"
-        ][Math.floor(Math.random()*8)];
+        emoji.innerHTML=
+        ["🙄","😑","😮‍💨","🤦‍♀️","💢","😒","🚩","🤡"]
+        [Math.floor(Math.random()*8)];
 
         emoji.style.position="fixed";
         emoji.style.left=Math.random()*100+"vw";
         emoji.style.top=Math.random()*100+"vh";
-        emoji.style.fontSize=(Math.random()*25+20)+"px";
+        emoji.style.fontSize=
+            (Math.random()*25+20)+"px";
 
         document.body.appendChild(emoji);
 
@@ -293,9 +467,9 @@ yesBtn.addEventListener("click",()=>{
             emoji.remove();
         },3000);
     }
-
 });
 
 </script>
 
-</body> 
+</body>
+</html>
