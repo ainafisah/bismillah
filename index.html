@@ -1,474 +1,269 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MSR Investigation Report</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>One Question 💜</title>
 
 <style>
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial,sans-serif;
-}
-
-body{
-    min-height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    overflow:hidden;
-    position:relative;
-    background:#111827;
-}
-
-body::before,
-body::after{
-    content:"";
-    position:absolute;
-    width:350px;
-    height:350px;
-    border-radius:50%;
-    filter:blur(80px);
-    opacity:0.6;
-}
-
-body::before{
-    background:#ff9800;
-    top:-100px;
-    left:-100px;
-}
-
-body::after{
-    background:#f44336;
-    bottom:-100px;
-    right:-100px;
-}
-
-.card{
-    position:relative;
-    z-index:10;
-    width:90%;
-    max-width:450px;
-
-    background:rgba(0,0,0,0.65);
-    backdrop-filter:blur(20px);
-
-    border:2px dashed #ff9800;
-    border-radius:25px;
-
-    padding:35px;
-    text-align:center;
-
-    box-shadow:0 8px 32px rgba(0,0,0,.4);
-
-    transform:rotate(-1deg);
-}
-
-h1{
-    color:white;
-    margin-bottom:15px;
-}
-
-h1::before{
-    content:"⚠️ CONFIDENTIAL CASE FILE ⚠️";
-    display:block;
-    font-size:12px;
-    color:#ff9800;
-    margin-bottom:10px;
-}
-
-.meter{
-    width:100%;
-    height:12px;
-    background:#333;
-    border-radius:20px;
-    overflow:hidden;
-    margin-bottom:15px;
-}
-
-#meterFill{
-    width:0%;
-    height:100%;
-    background:linear-gradient(
-        90deg,
-        #4caf50,
-        #ff9800,
-        #f44336
-    );
-    transition:1s;
-}
-
-.meterLabel{
-    color:white;
-    margin-bottom:12px;
-    font-size:14px;
-}
-
-#story{
-    color:#e5e7eb;
-    line-height:1.8;
-    min-height:120px;
-}
-
-.buttons{
-    display:none;
-    margin-top:20px;
-}
-
-button{
-    border:none;
-    border-radius:30px;
-    padding:12px 24px;
-    margin:8px;
-    cursor:pointer;
-    transition:.3s;
-}
-
-#yesBtn{
-    background:#ff4b7d;
-    color:white;
-}
-
-#noBtn{
-    background:white;
-    color:#111827;
-    position:relative;
-}
-
-.letter{
-    display:none;
-    margin-top:20px;
-    padding:15px;
-    border-radius:15px;
-    background:#fff0f5;
-    color:#444;
-    line-height:1.7;
-}
-
-.achievement{
-    position:fixed;
-    top:20px;
-    right:20px;
-    background:gold;
-    color:black;
-    padding:12px 18px;
-    border-radius:10px;
-    font-weight:bold;
-    z-index:9999;
-    animation:slideIn .4s ease;
-}
-
-@keyframes slideIn{
-    from{
-        transform:translateX(100%);
+    *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+        font-family: "Segoe UI", sans-serif;
     }
-    to{
-        transform:translateX(0);
+
+    body{
+        height:100vh;
+        overflow:hidden;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        background: linear-gradient(135deg, #2b1055, #7597de);
+        position:relative;
     }
-}
 
-.stamp{
-    position:absolute;
-    top:15px;
-    right:10px;
+    /* subtle animated gradient shift */
+    body::before{
+        content:"";
+        position:absolute;
+        inset:0;
+        background: linear-gradient(120deg, #2b1055, #3b0764, #7597de);
+        background-size: 300% 300%;
+        animation: bgShift 10s ease infinite;
+        opacity:0.6;
+        z-index:0;
+    }
 
-    color:red;
-    border:4px solid red;
+    @keyframes bgShift{
+        0%{background-position:0% 50%}
+        50%{background-position:100% 50%}
+        100%{background-position:0% 50%}
+    }
 
-    font-size:26px;
-    font-weight:bold;
+    .bg-glow{
+        position:absolute;
+        width:100%;
+        height:100%;
+        overflow:hidden;
+        z-index:1;
+    }
 
-    padding:8px;
+    .orb{
+        position:absolute;
+        width:200px;
+        height:200px;
+        background: radial-gradient(circle, rgba(180,120,255,0.6), transparent 70%);
+        border-radius:50%;
+        animation: floatOrb 14s infinite ease-in-out;
+        filter: blur(2px);
+    }
 
-    transform:rotate(18deg);
+    @keyframes floatOrb{
+        0%{ transform: translateY(110vh) translateX(0) scale(0.5); }
+        50%{ transform: translateY(40vh) translateX(30px) scale(1); }
+        100%{ transform: translateY(-20vh) translateX(-20px) scale(0.7); }
+    }
 
-    opacity:.8;
-}
+    /* floating hearts */
+    .heart{
+        position:absolute;
+        color:rgba(255,255,255,0.8);
+        font-size:18px;
+        animation: floatHeart 6s linear forwards;
+        z-index:1;
+    }
+
+    @keyframes floatHeart{
+        0%{transform:translateY(0) scale(0.8); opacity:0}
+        20%{opacity:1}
+        100%{transform:translateY(-120vh) scale(1.4); opacity:0}
+    }
+
+    .card{
+        position:relative;
+        z-index:3;
+        width:360px;
+        padding:35px;
+        border-radius:22px;
+        background: rgba(255,255,255,0.08);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255,255,255,0.2);
+        text-align:center;
+        color:white;
+        box-shadow:0 20px 60px rgba(0,0,0,0.4);
+        animation: cardPulse 3s ease-in-out infinite;
+    }
+
+    @keyframes cardPulse{
+        0%,100%{transform:translateY(0)}
+        50%{transform:translateY(-6px)}
+    }
+
+    h1{
+        font-size:22px;
+        margin-bottom:10px;
+        color:#e0b3ff;
+    }
+
+    p{
+        font-size:15px;
+        color:#ddd;
+        margin-bottom:25px;
+    }
+
+    .buttons{
+        position:relative;
+        height:120px;
+    }
+
+    button{
+        padding:12px 26px;
+        border:none;
+        border-radius:30px;
+        cursor:pointer;
+        font-size:15px;
+        transition:0.3s;
+        position:absolute;
+    }
+
+    #yesBtn{
+        background: linear-gradient(135deg, #a855f7, #d946ef);
+        color:white;
+        box-shadow:0 10px 25px rgba(168,85,247,0.4);
+        left:20px;
+        top:20px;
+        animation: glow 2s infinite;
+    }
+
+    @keyframes glow{
+        0%,100%{box-shadow:0 0 15px rgba(168,85,247,0.4);}
+        50%{box-shadow:0 0 30px rgba(216,70,239,0.8);}
+    }
+
+    #noBtn{
+        background:#2a2a3d;
+        color:#ccc;
+        left:180px;
+        top:60px;
+        transition:0.2s;
+    }
+
+    .shake{
+        animation: shake 0.3s;
+    }
+
+    @keyframes shake{
+        0%{transform:translateX(0)}
+        25%{transform:translateX(-5px)}
+        50%{transform:translateX(5px)}
+        100%{transform:translateX(0)}
+    }
+
+    .message{
+        display:none;
+        margin-top:20px;
+        font-size:18px;
+        color:#f5d0ff;
+        animation: pop 0.6s ease;
+    }
+
+    @keyframes pop{
+        0%{transform:scale(0)}
+        80%{transform:scale(1.1)}
+        100%{transform:scale(1)}
+    }
 
 </style>
 </head>
+
 <body>
 
+<div class="bg-glow" id="bgGlow"></div>
+
 <div class="card">
+    <h1>Hey you… 💜</h1>
+    <p>
+        I’ve been wondering something quietly…<br>
+        If I asked you out for a little moment in time,<br>
+        would you say yes?
+    </p>
 
-<h1>MSR</h1>
+    <div class="buttons">
+        <button id="yesBtn">Yes 💜</button>
+        <button id="noBtn">Not sure 😳</button>
+    </div>
 
-<p class="meterLabel">
-🚨 Emotional Damage Detection
-</p>
-
-<div class="meter">
-    <div id="meterFill"></div>
-</div>
-
-<div id="story"></div>
-
-<div class="buttons" id="buttons">
-    <button id="yesBtn">Yes 😮‍💨</button>
-    <button id="noBtn">No 😢</button>
-</div>
-
-<div class="letter" id="letter">
-
-"My answer is not right now sbb tak rasa nk date lgi"
-
-<br><br>
-
-Avoidant and tak move on are two different things lah.
-One avoids the conversation, the other still rehearses
-the conversation in the shower every night.
-
-<br><br>
-
-Typical men behavior, Nothing new 😮‍💨
-
-</div>
-
+    <div class="message" id="msg">
+        You just made my universe brighter ✨<br>
+        I’ll take that as a yes 💜
+    </div>
 </div>
 
 <script>
+const bg = document.getElementById("bgGlow");
 
-function createEmoji(){
+/* ORBS */
+function createOrb(){
+    const orb = document.createElement("div");
+    orb.classList.add("orb");
 
-    const emojis=[
-        "🙄","😑","😮‍💨","🤦‍♀️",
-        "💢","😒","🚩","🫠","🤡"
-    ];
+    orb.style.left = Math.random() * 100 + "vw";
+    orb.style.animationDuration = (10 + Math.random() * 8) + "s";
+    orb.style.opacity = Math.random() * 0.5 + 0.3;
+    orb.style.width = orb.style.height = (100 + Math.random() * 220) + "px";
 
-    const emoji=document.createElement("div");
-
-    emoji.innerHTML=
-        emojis[Math.floor(Math.random()*emojis.length)];
-
-    emoji.style.position="fixed";
-    emoji.style.left=Math.random()*100+"vw";
-    emoji.style.top="100vh";
-    emoji.style.fontSize=
-        (Math.random()*20+20)+"px";
-
-    emoji.style.transition=
-        `all ${Math.random()*3+4}s linear`;
-
-    document.body.appendChild(emoji);
-
-    requestAnimationFrame(()=>{
-        emoji.style.top="-50px";
-        emoji.style.opacity="0";
-    });
-
-    setTimeout(()=>{
-        emoji.remove();
-    },7000);
+    bg.appendChild(orb);
+    setTimeout(() => orb.remove(), 15000);
 }
+setInterval(createOrb, 400);
 
-setInterval(createEmoji,500);
+/* HEARTS */
+function createHeart(){
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "💜";
 
-function achievement(text){
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.top = "100vh";
 
-    const popup=document.createElement("div");
+    heart.style.fontSize = (12 + Math.random() * 20) + "px";
 
-    popup.className="achievement";
-    popup.innerHTML="🏆 "+text;
-
-    document.body.appendChild(popup);
-
-    setTimeout(()=>{
-        popup.remove();
-    },3000);
+    bg.appendChild(heart);
+    setTimeout(() => heart.remove(), 6000);
 }
+setInterval(createHeart, 600);
 
-const messages=[
+/* NO BUTTON ESCAPE */
+const noBtn = document.getElementById("noBtn");
 
-"There was a girl who always kept her",
-"door closed. Not because she hated people",
-"but because she was careful with her heart.",
-"She didn’t open it easily, because every time",
-"she did, she believed it meant something.",
-"Then one day, someone came and started knocking",
-"often. Not loud, not demanding, just enough to make",
-"her wonder if it was safe to open a little. He stayed",
-"around. He talked every day. Slowly, she opened the door",
-"just a bit. For the first time in a long while,",
-"she thought maybe it was okay to let someone in.",
-"But while standing at her door, he would talk about other",
-"doors he had been to. Sometimes he disappeared without warning,",
-"sometimes he came back like he never left. And each time,",
-"she would quietly wait by her door, hoping it meant something",
-"more than confusion. She didn’t say much. She just kept hoping.",
-"Until one day, she realised she was the only one treating the",
-"door like it was something sacred. To him, it was just another",
-"place to pass by.She wasn’t angry when she finally closed it again.",
-"She just felt empty. Because she didn’t open her door often… and",
-"when she finally did, it still wasn’t enough to be chosen."
+noBtn.addEventListener("mouseover", () => {
+    noBtn.classList.add("shake");
 
-];
+    const x = Math.random() * 200;
+    const y = Math.random() * 80;
 
-const story=document.getElementById("story");
-const buttons=document.getElementById("buttons");
-const meter=document.getElementById("meterFill");
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
 
-let msgIndex=0;
-
-function showMessage(){
-
-    if(msgIndex < messages.length){
-
-        meter.style.width=
-            ((msgIndex+1)/messages.length)*100+"%";
-
-        story.innerHTML=
-        `<b>Investigation Log #${msgIndex+1}</b><br><br>
-        ${messages[msgIndex]}`;
-
-        if(msgIndex===5)
-            achievement("Mixed Signals Detected");
-
-        if(msgIndex===10)
-            achievement("Emotional Damage Unlocked");
-
-        if(msgIndex===17)
-            achievement("Rare Item Found: Self Respect");
-
-        msgIndex++;
-
-        setTimeout(showMessage,2500);
-
-    }else{
-
-        story.innerHTML=
-        "🔍 Analyzing Male Behaviour...";
-
-        setTimeout(()=>{
-
-            story.innerHTML=
-            `
-            ✅ Analysis Complete
-            <br><br>
-
-            Probability of Mixed Signals:
-            97.8%
-
-            <br><br>
-
-            Probability of Emotional Confusion:
-            99.9%
-
-            <br><br>
-
-            Probability of Being Annoying:
-            100%
-            `;
-
-            setTimeout(()=>{
-
-                story.innerHTML=
-                "<strong>Would you go on a date with me? nope</strong>";
-
-                buttons.style.display="block";
-
-            },2500);
-
-        },2500);
-    }
-}
-
-showMessage();
-
-const noBtn=document.getElementById("noBtn");
-
-let attempts=0;
-
-const noTexts=[
-
-"Still No 😑",
-"Absolutely No 🙄",
-"Bro Stop 🤦‍♀️",
-"You're Embarrassing Yourself 😭",
-"Call Your Friends 😭",
-"Touch Grass 🌱",
-"Seek Help 🚑",
-"Delete This Website 🚨",
-"JUST PRESS YES ALREADY 💀"
-
-];
-
-function moveButton(){
-
-    if(attempts < noTexts.length){
-
-        noBtn.innerHTML=noTexts[attempts];
-    }
-
-    attempts++;
-
-    noBtn.style.left=
-        Math.random()*220+"px";
-
-    noBtn.style.top=
-        Math.random()*80+"px";
-}
-
-noBtn.addEventListener("mouseover",moveButton);
-noBtn.addEventListener("touchstart",moveButton);
-
-document.getElementById("yesBtn")
-.addEventListener("click",()=>{
-
-    story.innerHTML=
-    `
-    ⚠️ ERROR 404
-
-    <br><br>
-
-    Date Request Not Found
-
-    <br><br>
-
-    Reason:
-
-    <br><br>
-
-    "My answer is not right now sbb tak rasa nk date lgi"
-    `;
-
-    document.getElementById("letter")
-    .style.display="block";
-
-    const stamp=document.createElement("div");
-
-    stamp.className="stamp";
-    stamp.innerHTML="CASE CLOSED";
-
-    document.querySelector(".card")
-    .appendChild(stamp);
-
-    achievement("Legendary Badge: Avoidant Detector");
-
-    for(let i=0;i<150;i++){
-
-        const emoji=document.createElement("div");
-
-        emoji.innerHTML=
-        ["🙄","😑","😮‍💨","🤦‍♀️","💢","😒","🚩","🤡"]
-        [Math.floor(Math.random()*8)];
-
-        emoji.style.position="fixed";
-        emoji.style.left=Math.random()*100+"vw";
-        emoji.style.top=Math.random()*100+"vh";
-        emoji.style.fontSize=
-            (Math.random()*25+20)+"px";
-
-        document.body.appendChild(emoji);
-
-        setTimeout(()=>{
-            emoji.remove();
-        },3000);
-    }
+    setTimeout(() => noBtn.classList.remove("shake"), 300);
 });
 
+/* YES BUTTON */
+const yesBtn = document.getElementById("yesBtn");
+const msg = document.getElementById("msg");
+
+yesBtn.addEventListener("click", () => {
+    msg.style.display = "block";
+
+    // mini confetti hearts burst
+    for(let i=0;i<12;i++){
+        setTimeout(createHeart, i * 80);
+    }
+
+    document.body.style.background =
+        "linear-gradient(135deg, #3b0764, #7c3aed, #c084fc)";
+});
 </script>
 
 </body>
