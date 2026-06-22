@@ -1,270 +1,457 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>One Question 💜</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Courage to Be Seen</title>
+    <style>
+        :root{
+            --bg1:#090414;
+            --bg2:#1d0f3f;
+            --bg3:#3a166d;
 
-<style>
-    *{
-        margin:0;
-        padding:0;
-        box-sizing:border-box;
-        font-family: "Segoe UI", sans-serif;
-    }
+            --glass:rgba(255,255,255,.08);
+            --glass-border:rgba(255,255,255,.12);
 
-    body{
-        height:100vh;
-        overflow:hidden;
-        display:flex;
-        justify-content:center;
-        align-items:center;
-        background: linear-gradient(135deg, #2b1055, #7597de);
-        position:relative;
-    }
+            --white:#fff;
+            --text:#f5edff;
+            --muted:#d8b4fe;
 
-    /* subtle animated gradient shift */
-    body::before{
+            --purple:#c084fc;
+            --purple2:#a855f7;
+            --purple3:#7e22ce;
+        }
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+        html{
+            -webkit-text-size-adjust:100%;
+        }
+
+        body{
+            font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif;
+            min-height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            padding:
+                max(24px, env(safe-area-inset-top))
+                18px
+                max(24px, env(safe-area-inset-bottom));
+            overflow:hidden;
+
+            color:var(--text);
+
+            background:
+            radial-gradient(circle at top,#5b21b644 0%,transparent 40%),
+            radial-gradient(circle at bottom right,#9333ea44 0%,transparent 35%),
+            linear-gradient(135deg,var(--bg1),var(--bg2),var(--bg3));
+
+            position:relative;
+        }
+
+        /* Floating blurred lights */
+
+        body::before,
+        body::after{
+            content:"";
+            position:absolute;
+            border-radius:50%;
+            filter:blur(70px);
+            animation:floatBlob 12s ease-in-out infinite;
+        }
+
+        body::before{
+            width:280px;
+            height:280px;
+            background:#c084fc33;
+            top:-80px;
+            left:-80px;
+        }
+
+        body::after{
+            width:240px;
+            height:240px;
+            background:#a855f733;
+            bottom:-70px;
+            right:-70px;
+            animation-delay:4s;
+        }
+
+        @keyframes floatBlob{
+
+        0%,100%{
+        transform:translateY(0px) translateX(0px);
+        }
+
+        50%{
+        transform:translateY(40px) translateX(-20px);
+        }
+
+        }
+
+        .courage-card{
+
+            width:100%;
+            max-width:430px;
+
+            padding:38px 28px;
+
+            border-radius:28px;
+
+            background:var(--glass);
+
+            backdrop-filter:blur(30px);
+            -webkit-backdrop-filter:blur(30px);
+
+            border:1px solid var(--glass-border);
+
+            box-shadow:
+            0 20px 60px rgba(0,0,0,.45),
+            inset 0 1px 1px rgba(255,255,255,.08);
+
+            position:relative;
+
+            overflow:hidden;
+
+            animation:fadeUp .8s ease;
+        }
+
+        .courage-card::before{
+
         content:"";
-        position:absolute;
-        inset:0;
-        background: linear-gradient(120deg, #2b1055, #3b0764, #7597de);
-        background-size: 300% 300%;
-        animation: bgShift 10s ease infinite;
-        opacity:0.6;
-        z-index:0;
-    }
 
-    @keyframes bgShift{
-        0%{background-position:0% 50%}
-        50%{background-position:100% 50%}
-        100%{background-position:0% 50%}
-    }
-
-    .bg-glow{
         position:absolute;
+
+        top:0;
+        left:-120%;
+
+        width:70%;
+        height:100%;
+
+        background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,.12),
+        transparent);
+
+        transform:skewX(-25deg);
+
+        animation:shine 7s infinite;
+
+        }
+
+        @keyframes shine{
+
+        100%{
+        left:180%;
+        }
+
+        }
+
+        @keyframes fadeUp{
+
+        from{
+        opacity:0;
+        transform:translateY(30px);
+        }
+
+        to{
+        opacity:1;
+        transform:translateY(0);
+        }
+
+        }
+
+        .icon-star{
+
+        font-size:clamp(36px,6vw,46px);
+
+        margin-bottom:18px;
+
+        animation:float 4s ease infinite;
+
+        filter:drop-shadow(0 0 15px #c084fc);
+
+        }
+
+        @keyframes float{
+
+        50%{
+        transform:translateY(-10px);
+        }
+
+        }
+
+        h1{
+
+        font-size:clamp(30px,7vw,38px);
+
+        font-weight:700;
+
+        background:linear-gradient(90deg,#ffffff,#d8b4fe,#ffffff);
+
+        -webkit-background-clip:text;
+        -webkit-text-fill-color:transparent;
+
+        margin-bottom:10px;
+
+        line-height:1.15;
+
+        }
+
+        .subtitle{
+
+        font-size:12px;
+
+        letter-spacing:4px;
+
+        text-transform:uppercase;
+
+        color:var(--muted);
+
+        margin-bottom:30px;
+
+        }
+
+        .manifesto-container{
+
+        text-align:left;
+
+        padding-left:20px;
+
+        border-left:3px solid #c084fc;
+
+        }
+
+        .manifesto-p{
+
+        font-size:16px;
+
+        line-height:1.9;
+
+        margin-bottom:20px;
+
+        color:#f3e8ff;
+
+        }
+
+        .highlight-phrase{
+
+        font-weight:700;
+
+        color:white;
+
+        text-shadow:0 0 20px #d8b4fe;
+
+        }
+
+        .ws-button{
+
+        margin-top:34px;
+
+        display:flex;
+
+        justify-content:center;
+
+        align-items:center;
+
+        gap:10px;
+
+        padding:16px;
+
+        width:100%;
+
+        border-radius:18px;
+
+        text-decoration:none;
+
+        font-weight:700;
+
+        font-size:16px;
+
+        background:linear-gradient(
+        135deg,
+        #a855f7,
+        #c084fc);
+
+        color:white;
+
+        box-shadow:
+        0 10px 30px rgba(168,85,247,.45);
+
+        transition:.35s;
+
+        position:relative;
+
+        overflow:hidden;
+
+        }
+
+        .ws-button::before{
+
+        content:"";
+
+        position:absolute;
+
+        top:0;
+        left:-100%;
+
         width:100%;
         height:100%;
+
+        background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,.4),
+        transparent);
+
+        transition:.7s;
+
+        }
+
+        .ws-button:hover{
+
+        transform:translateY(-4px) scale(1.02);
+
+        box-shadow:
+        0 15px 40px rgba(192,132,252,.55);
+
+        }
+
+        .ws-button:hover::before{
+
+        left:120%;
+
+        }
+
+        .ws-icon{
+
+        font-size:20px;
+
+        }
+
+        @media(max-width:430px){
+
+        .courage-card{
+
+        padding:32px 22px;
+
+        border-radius:24px;
+
+        }
+
+        .manifesto-p{
+
+        font-size:15px;
+
+        line-height:1.8;
+
+        }
+
+        .subtitle{
+
+        letter-spacing:3px;
+
+        }
+
+        }
+
+        .stars{
+        position:absolute;
+        inset:0;
+        pointer-events:none;
         overflow:hidden;
-        z-index:1;
-    }
+        }
 
-    .orb{
+        .stars span{
+
         position:absolute;
-        width:200px;
-        height:200px;
-        background: radial-gradient(circle, rgba(180,120,255,0.6), transparent 70%);
+
+        width:4px;
+        height:4px;
+
+        background:white;
+
         border-radius:50%;
-        animation: floatOrb 14s infinite ease-in-out;
-        filter: blur(2px);
-    }
 
-    @keyframes floatOrb{
-        0%{ transform: translateY(110vh) translateX(0) scale(0.5); }
-        50%{ transform: translateY(40vh) translateX(30px) scale(1); }
-        100%{ transform: translateY(-20vh) translateX(-20px) scale(0.7); }
-    }
+        box-shadow:0 0 12px white;
 
-    /* floating hearts */
-    .heart{
-        position:absolute;
-        color:rgba(255,255,255,0.8);
-        font-size:18px;
-        animation: floatHeart 6s linear forwards;
-        z-index:1;
-    }
+        animation:twinkle 3s infinite ease-in-out;
 
-    @keyframes floatHeart{
-        0%{transform:translateY(0) scale(0.8); opacity:0}
-        20%{opacity:1}
-        100%{transform:translateY(-120vh) scale(1.4); opacity:0}
-    }
+        }
 
-    .card{
-        position:relative;
-        z-index:3;
-        width:360px;
-        padding:35px;
-        border-radius:22px;
-        background: rgba(255,255,255,0.08);
-        backdrop-filter: blur(12px);
-        border: 1px solid rgba(255,255,255,0.2);
-        text-align:center;
-        color:white;
-        box-shadow:0 20px 60px rgba(0,0,0,0.4);
-        animation: cardPulse 3s ease-in-out infinite;
-    }
+        .stars span:nth-child(1){top:15%;left:12%;}
+        .stars span:nth-child(2){top:30%;right:18%;}
+        .stars span:nth-child(3){bottom:22%;left:18%;}
+        .stars span:nth-child(4){bottom:12%;right:10%;}
+        .stars span:nth-child(5){top:60%;left:50%;}
+        .stars span:nth-child(6){top:8%;right:45%;}
 
-    @keyframes cardPulse{
-        0%,100%{transform:translateY(0)}
-        50%{transform:translateY(-6px)}
-    }
+        @keyframes twinkle{
 
-    h1{
-        font-size:22px;
-        margin-bottom:10px;
-        color:#e0b3ff;
-    }
+        0%,100%{
+        opacity:.2;
+        transform:scale(.8);
+        }
 
-    p{
-        font-size:15px;
-        color:#ddd;
-        margin-bottom:25px;
-    }
+        50%{
+        opacity:1;
+        transform:scale(1.8);
+        }
 
-    .buttons{
-        position:relative;
-        height:120px;
-    }
-
-    button{
-        padding:12px 26px;
-        border:none;
-        border-radius:30px;
-        cursor:pointer;
-        font-size:15px;
-        transition:0.3s;
-        position:absolute;
-    }
-
-    #yesBtn{
-        background: linear-gradient(135deg, #a855f7, #d946ef);
-        color:white;
-        box-shadow:0 10px 25px rgba(168,85,247,0.4);
-        left:20px;
-        top:20px;
-        animation: glow 2s infinite;
-    }
-
-    @keyframes glow{
-        0%,100%{box-shadow:0 0 15px rgba(168,85,247,0.4);}
-        50%{box-shadow:0 0 30px rgba(216,70,239,0.8);}
-    }
-
-    #noBtn{
-        background:#2a2a3d;
-        color:#ccc;
-        left:180px;
-        top:60px;
-        transition:0.2s;
-    }
-
-    .shake{
-        animation: shake 0.3s;
-    }
-
-    @keyframes shake{
-        0%{transform:translateX(0)}
-        25%{transform:translateX(-5px)}
-        50%{transform:translateX(5px)}
-        100%{transform:translateX(0)}
-    }
-
-    .message{
-        display:none;
-        margin-top:20px;
-        font-size:18px;
-        color:#f5d0ff;
-        animation: pop 0.6s ease;
-    }
-
-    @keyframes pop{
-        0%{transform:scale(0)}
-        80%{transform:scale(1.1)}
-        100%{transform:scale(1)}
-    }
-
-</style>
+        }
+    </style>
 </head>
-
 <body>
 
-<div class="bg-glow" id="bgGlow"></div>
-
-<div class="card">
-    <h1>Hey you… 💜</h1>
-    <p>
-        I’ve been wondering something quietly…<br>
-        If I asked you out for a little moment in time,<br>
-        would you say yes?
-    </p>
-
-    <div class="buttons">
-        <button id="yesBtn">Yes 💜</button>
-        <button id="noBtn">Not sure 😳</button>
+    <div class="stars">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
     </div>
 
-    <div class="message" id="msg">
-        You just made my universe brighter ✨<br>
-        I’ll take that as a yes 💜
-    </div>
-</div>
+    <div class="courage-card">
+        <div class="icon-star">✨</div>
+        
+        <h1>If You Ever Stay</h1>
+        <div class="subtitle">30/11/2030</div>
+        
+        <div class="manifesto-container">
+            <p class="manifesto-p">
+                "This happens once every few lifetimes,<br>
+                These chemicals hit me like white wine."
+            </p>
+
+            <p class="manifesto-p">
+                "Cause the sign on your heart<br>
+                Said it's still reserved for me.<br>
+                <span class="highlight-phrase">
+                    Honestly, who are we to fight the alchemy?
+                </span>"
+            </p>
+        </div>
+
+                <!-- Dynamic Client-Side WhatsApp Button -->
+                <a id="whatsappLink" href="#" target="_blank" class="ws-button">
+                    <span class="ws-icon">🔮</span> Connect on WhatsApp
+                </a>
+            </div>
 
 <script>
-const bg = document.getElementById("bgGlow");
 
-/* ORBS */
-function createOrb(){
-    const orb = document.createElement("div");
-    orb.classList.add("orb");
+    const yourWhatsAppNumber = "+601169112711"; 
 
-    orb.style.left = Math.random() * 100 + "vw";
-    orb.style.animationDuration = (10 + Math.random() * 8) + "s";
-    orb.style.opacity = Math.random() * 0.5 + 0.3;
-    orb.style.width = orb.style.height = (100 + Math.random() * 220) + "px";
+    const defaultMessage = encodeURIComponent("Hi, I'm stupid. I wanted u to know that u're pretty cute hehe.");
 
-    bg.appendChild(orb);
-    setTimeout(() => orb.remove(), 15000);
-}
-setInterval(createOrb, 400);
-
-/* HEARTS */
-function createHeart(){
-    const heart = document.createElement("div");
-    heart.classList.add("heart");
-    heart.innerHTML = "💜";
-
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.top = "100vh";
-
-    heart.style.fontSize = (12 + Math.random() * 20) + "px";
-
-    bg.appendChild(heart);
-    setTimeout(() => heart.remove(), 6000);
-}
-setInterval(createHeart, 600);
-
-/* NO BUTTON ESCAPE */
-const noBtn = document.getElementById("noBtn");
-
-noBtn.addEventListener("mouseover", () => {
-    noBtn.classList.add("shake");
-
-    const x = Math.random() * 200;
-    const y = Math.random() * 80;
-
-    noBtn.style.left = x + "px";
-    noBtn.style.top = y + "px";
-
-    setTimeout(() => noBtn.classList.remove("shake"), 300);
-});
-
-/* YES BUTTON */
-const yesBtn = document.getElementById("yesBtn");
-const msg = document.getElementById("msg");
-
-yesBtn.addEventListener("click", () => {
-    msg.style.display = "block";
-
-    // mini confetti hearts burst
-    for(let i=0;i<12;i++){
-        setTimeout(createHeart, i * 80);
-    }
-
-    document.body.style.background =
-        "linear-gradient(135deg, #3b0764, #7c3aed, #c084fc)";
-});
-</script>
+    document.getElementById("whatsappLink").href = `https://wa.me/${yourWhatsAppNumber.replace("+","")}?text=${defaultMessage}`;</script>
 
 </body>
 </html>
